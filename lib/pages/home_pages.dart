@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:reto_1/pages/facebok_page.dart';
+import 'package:reto_1/pages/gmail_page.dart';
+import 'package:reto_1/pages/linkedin_page.dart';
+import 'package:reto_1/pages/login_page.dart';
+import 'package:reto_1/pages/signup_page.dart';
 
 class HomePage extends StatefulWidget {
   static final routeName = 'homePage';
@@ -9,6 +14,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  var id = '120';
+  var code = 'ABC123';
+  var description = 'TRAMARSA';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -74,7 +82,14 @@ class _HomePageState extends State<HomePage> {
                           borderRadius: BorderRadius.circular(50),
                         ),
                         child: InkWell(
-                          onTap: () => {},
+                          onTap: () => {
+                            Navigator.pushNamed(context, LoginPage.routeName,
+                                arguments: {
+                                  'id': id,
+                                  'code': code,
+                                  'description': description
+                                }),
+                          },
                           child: Center(
                             child: Text(
                               'Login',
@@ -98,7 +113,9 @@ class _HomePageState extends State<HomePage> {
                           borderRadius: BorderRadius.circular(50),
                         ),
                         child: InkWell(
-                          onTap: () => {},
+                          onTap: () => {
+                            Navigator.pushNamed(context, SignUpPage.routeName)
+                          },
                           child: Center(
                             child: Text(
                               'Sign Up',
@@ -134,23 +151,38 @@ class _HomePageState extends State<HomePage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Image.asset(
-                      'images/facebook.png',
-                      height: 30.0,
+                    InkWell(
+                      onTap: () => {
+                        Navigator.of(context).pushNamed(FacebookPage.routeName),
+                      },
+                      child: Image.asset(
+                        'images/facebook.png',
+                        height: 35.0,
+                      ),
                     ),
                     SizedBox(
                       width: 10,
                     ),
-                    Image.asset(
-                      'images/google.png',
-                      height: 30.0,
+                    InkWell(
+                      onTap: () => {
+                        Navigator.of(context).pushNamed(GmailPage.routeName)
+                      },
+                      child: Image.asset(
+                        'images/google.png',
+                        height: 35.0,
+                      ),
                     ),
                     SizedBox(
                       width: 10,
                     ),
-                    Image.asset(
-                      'images/linkedin.png',
-                      height: 30.0,
+                    InkWell(
+                      onTap: () => {
+                        Navigator.of(context).pushNamed(LinkedInPage.routeName)
+                      },
+                      child: Image.asset(
+                        'images/linkedin.png',
+                        height: 35.0,
+                      ),
                     ),
                   ],
                 ),
