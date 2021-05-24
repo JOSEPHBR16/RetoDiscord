@@ -19,12 +19,22 @@ class _HomePageState extends State<HomePage> {
   var description = 'TRAMARSA';
   @override
   Widget build(BuildContext context) {
+    Map parametros = ModalRoute.of(context).settings.arguments;
     return Scaffold(
         body: SafeArea(
       child: Column(
         children: <Widget>[
           SizedBox(
             height: 20.0,
+          ),
+          Text(
+            parametros != null ? parametros['idUpdate'] : "",
+          ),
+          Text(
+            parametros != null ? parametros['codeUpdate'] : "",
+          ),
+          Text(
+            parametros != null ? parametros['descriptionUpdate'] : "",
           ),
           Container(
             padding: EdgeInsets.only(left: 20),
@@ -69,6 +79,7 @@ class _HomePageState extends State<HomePage> {
             child: Column(
               children: [
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Padding(padding: EdgeInsets.only(left: 20, bottom: 20)),
                     Container(

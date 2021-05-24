@@ -19,9 +19,24 @@ class _LoginPageState extends State<LoginPage> {
         title: (Text('Login')),
         actions: <Widget>[
           IconButton(
-            icon: new Icon(Icons.backup_outlined),
+            icon: new Icon(Icons.check),
             onPressed: () {
-              Navigator.of(context).pop(HomePage.routeName);
+              print(
+                "ID: " +
+                    parametros['id'] +
+                    " | CODE: " +
+                    parametros['code'] +
+                    " | DESCRIPCION: " +
+                    parametros['description'],
+              );
+              var id = parametros['id'];
+              var code = parametros['code'];
+              var description = parametros['description'];
+              Navigator.of(context).pushNamed(HomePage.routeName, arguments: {
+                'idUpdate': id,
+                'codeUpdate': code,
+                'descriptionUpdate': description,
+              });
             },
           ),
           IconButton(
@@ -37,11 +52,11 @@ class _LoginPageState extends State<LoginPage> {
         child: ListView(
           padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 20.0),
           children: <Widget>[
-            _idTextField(parametros['id']),
+            _idTextField(),
             Divider(),
-            _codeTextField(parametros['code']),
+            _codeTextField(),
             Divider(),
-            _descritptionTextField(parametros['description']),
+            _descritptionTextField(),
             Divider(),
           ],
         ),
@@ -49,12 +64,13 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Widget _idTextField(String idText) {
+  Widget _idTextField() {
+    Map parametros = ModalRoute.of(context).settings.arguments;
     return Form(
       child: Column(
         children: [
           TextFormField(
-            initialValue: idText,
+            initialValue: parametros['id'],
             decoration: InputDecoration(
               border:
                   OutlineInputBorder(borderRadius: BorderRadius.circular(20.0)),
@@ -63,7 +79,7 @@ class _LoginPageState extends State<LoginPage> {
             ),
             onChanged: (valor) {
               setState(() {
-                idText = valor;
+                parametros['id'] = valor;
               });
             },
           )
@@ -72,12 +88,13 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  _codeTextField(String codeText) {
+  _codeTextField() {
+    Map parametros = ModalRoute.of(context).settings.arguments;
     return Form(
       child: Column(
         children: [
           TextFormField(
-            initialValue: codeText,
+            initialValue: parametros['code'],
             decoration: InputDecoration(
               border:
                   OutlineInputBorder(borderRadius: BorderRadius.circular(20.0)),
@@ -86,7 +103,7 @@ class _LoginPageState extends State<LoginPage> {
             ),
             onChanged: (valor) {
               setState(() {
-                codeText = valor;
+                parametros['code'] = valor;
               });
             },
           )
@@ -95,12 +112,13 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  _descritptionTextField(String descriptionText) {
+  _descritptionTextField() {
+    Map parametros = ModalRoute.of(context).settings.arguments;
     return Form(
       child: Column(
         children: [
           TextFormField(
-            initialValue: descriptionText,
+            initialValue: parametros['description'],
             decoration: InputDecoration(
               border:
                   OutlineInputBorder(borderRadius: BorderRadius.circular(20.0)),
@@ -109,7 +127,7 @@ class _LoginPageState extends State<LoginPage> {
             ),
             onChanged: (valor) {
               setState(() {
-                descriptionText = valor;
+                parametros['description'] = valor;
               });
             },
           )
